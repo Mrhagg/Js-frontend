@@ -1,0 +1,56 @@
+.main-container {
+    display: flex;
+    position: relative;
+    left: 12rem;
+  }
+  
+  .container {
+    flex: 1;
+  }
+  
+  .content {
+    flex: 3;
+    position: relative;
+    left: 3rem;
+    }
+  
+  .notifications {
+    padding: 20px;
+    font-weight: 100;
+    color: #0B0F19;
+  }
+
+  .content-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    width: 40%;
+    color: #0B0F19;
+    font-weight: 300;
+  }
+
+  .checkbox {
+    margin-top: 2rem;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 2rem;
+  }
+  
+  .btn-gray, .btn-theme {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn-gray {
+    background-color: #ccc;
+  }
+  
+  .btn-theme {
+    background-color: #007BFF;
+    color: white;
+  }
+  
