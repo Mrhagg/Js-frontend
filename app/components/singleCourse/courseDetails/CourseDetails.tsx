@@ -1,3 +1,5 @@
+import "./courseDetails.css";
+
 type CourseProgramItem = {
     title: string;
     text: string;
@@ -11,21 +13,21 @@ export default function CourseDetails({
     programItems
 }: CourseProgramProps) {
     return (
-        <div>
-            <h1>Program Details</h1>
-            <div>
-                {programItems.map((item, index) => (
-                    <div key={index}>
-                        <div>
-                            {index}
-                        </div>
-                        <div>
-                            <h4>{item.title}</h4>
-                            <p>{item.text}</p>
-                        </div>
+         <div className="course-program">
+                    <h1>Program Details</h1>
+                    <div className="program-list">
+                        {programItems.map((item, index) => (
+                            <div className="program-list-row" key={index}>
+                                <div className="number-display">
+                                    {index + 1}
+                                </div>
+                                <div className="text-holder">
+                                    <h4>{item.title}</h4>
+                                    <p>{item.text}</p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
-        </div>
+                </div>
     )
 }

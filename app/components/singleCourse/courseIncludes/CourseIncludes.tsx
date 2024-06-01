@@ -1,4 +1,4 @@
-type CourseInfoCardProps = {
+type CourseIncludesProps = {
     hours: number;
     articles: number;
     downloadResources: number;
@@ -12,7 +12,7 @@ export default function CourseIncludes({
     downloadResources,
     price,
     discountPrice
-}: CourseInfoCardProps) {
+}: CourseIncludesProps) {
     return (
         <div>
             <h4>This course includes:</h4>

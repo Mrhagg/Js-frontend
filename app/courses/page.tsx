@@ -1,13 +1,21 @@
+'use client'
 import Link from "next/link";
 import Image from "next/image";
 
-
+import getCourses from "../services/getAllCourses";
 import CourseItem from "../components/courses/CourseItem";
-
+import { useState, useEffect } from "react";
 import "./Course.css";
 import CourseImage from "../../public/images/woman.svg";
 
+
 export default function Courses() {
+    const [courses, setCourses] = useState<any[]>([]);
+
+    useEffect(() => {
+        getCourses(setCourses)
+    }, []);
+
     return (
       <main>
         <section className="all-courses">
