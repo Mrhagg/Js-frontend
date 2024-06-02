@@ -11,6 +11,7 @@ import CourseAuthor from "../../components/singleCourse/courseAuthors/CourseAuth
 import "./singleCourses.css";
 import { useParams } from "next/navigation";
 import { Course } from "@/app/services/getAllCourses";
+import Button from "@/app/components/global/formgroup/button/Button";
 
 export default function Page({ params }: { params: { singleCourseId: string } }) {
   const [course, setCourse] = useState<Course | null>();
@@ -45,7 +46,7 @@ export default function Page({ params }: { params: { singleCourseId: string } })
     return ( 
     <main>
         <section className="single-course">
-            <CourseHeader imageHeaderUri={""} title={course.title ?? ''} text={course.ingress ?? ''} reviews={course.reviews ? +course.reviews : 0} likes={course.likes ? +course.likes : 0} hours={course.hours ? +course.hours : 0} author={''} authorImage={''}/>
+            <CourseHeader imageHeaderUri={""} title={course.title ?? ''} text={course.ingress ?? ''} reviews={course.reviews ? +course.reviews : 0} likes={course.likes ? +course.likes : 0} hours={course.hours ? +course.hours : 0} author={''} imageUri={''}/>
             <div className="container">
             <div className="wrapper">
                 <div className="container-left">
@@ -56,7 +57,7 @@ export default function Page({ params }: { params: { singleCourseId: string } })
                     <CourseIncludes hours={course.hours ? +course.hours : 0} articles={0} downloadResources={0} price={0} />
                 </div>
             </div>
-            {/* <CourseAuthor imageUri={course.authors!.map((author: any) => author.imageUri)} name={course.authors.map((author: any) => author.name)} text={course.authors.map((author: any) => author.text)} /> */}
+            {}
             </div>
         </section>
     </main>

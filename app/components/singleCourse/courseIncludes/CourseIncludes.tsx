@@ -1,3 +1,5 @@
+import Button from "../../global/formgroup/button/Button";
+
 type CourseIncludesProps = {
     hours: number;
     articles: number;
@@ -24,7 +26,7 @@ export default function CourseIncludes({
                 <li>Certificate of completion</li>
             </ul>
             <h2>{price}</h2>
-            <button className="btn-theme" title="Join Course" />
+            <Button className="btn-theme" title="Join Course" />
         </div>
     )
 }

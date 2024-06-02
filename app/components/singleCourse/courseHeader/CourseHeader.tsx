@@ -2,24 +2,25 @@ import "./courseHeader.css";
 
 type CourseHeaderProps = {
     imageHeaderUri: string;
+    imageUri: string;
     title: string;
     text: string;
     reviews: number;
     likes: number;
     hours: number;
     author: string;
-    authorImage?: string;
+
 }
 
 export default function CourseHeader({
     imageHeaderUri,
+    imageUri,
     title,
     text,
     reviews,
     likes,
     hours,
     author,
-    authorImage
 }: CourseHeaderProps) {
     return (
         <div className="course-header" style={{ backgroundImage: `url(${imageHeaderUri})` }}>
@@ -35,7 +36,7 @@ export default function CourseHeader({
                 </div>
                 <div className="author-holder">
                     <div>
-                        <img className="author-img" src={authorImage} />
+                        <img className="author-img" src={imageUri} />
                     </div>
                     <div>
                         <p>Created by</p>

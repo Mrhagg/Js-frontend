@@ -44,7 +44,7 @@ export default function SingleCourse({id}: {id: string}) {
     return ( 
     <main>
         <section className="single-course">
-            <CourseHeader imageHeaderUri={course.imageUrl} title={course.title} text={course.text} reviews={course.reviews} likes={course.likes} hours={course.hours} author={course.authors.map((author: any) => author.name)} authorImage={course.authors.map((author: any) => author.imageUrl)}/>
+            <CourseHeader imageHeaderUri={course.imageHeaderUri} title={course.title} text={course.text} reviews={course.reviews} likes={course.likes} hours={course.hours} author={course.authors.map((author: any) => author.name)} imageUri={course.authors.map((author: any) => author.imageUrl)}/>
             <div className="container">
             <div className="wrapper">
                 <div className="container-left">
