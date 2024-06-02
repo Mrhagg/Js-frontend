@@ -1,20 +1,21 @@
-export default async function getAllCourses(Courses: (data: any[]) => void){
+export default async function getAllCourses(){
     const query = `
     query {
-      getCourses {
-        id
-        imageUri
-        title
+      getAllCourses {
+        id 
+        isBestSeller 
+        title 
         authors {
           name
-        }
+        } 
+        categories 
         prices {
-          discountPrice
-          price
-        }
-        hours
-        likes
-        likesInProcent
+          price 
+          discount
+        } 
+        hours 
+        likesInProcent 
+        likes 
       }
     }
     `; 
@@ -29,16 +30,54 @@ export default async function getAllCourses(Courses: (data: any[]) => void){
           query: query
         })
       });
-  
-      console.log(res);
-    
-      if (!res.ok) {
-        throw new Error('Failed to fetch data');
-      }
-    
+
       const data = await res.json();
-      Courses(data.data.getCourses);
+      return data.data.getAllCourses as  Course[];
     } catch (error) {
       console.error('Error fetching courses:', error);
+      return [];
     }
   };
+
+
+
+export interface Course {
+    id: string;
+    imageUri: string | null;
+    imageHeaderUri: string | null;
+    isBestSeller: boolean;
+    isDigital: boolean;
+    categories: string[] | null;
+    title: string | null;
+    ingress: string | null;
+    starRating: number;
+    reviews: string | null;
+    likesInProcent: string | null;
+    likes: string | null;
+    hours: string | null;
+    authors: Author[] | null;
+    prices: Prices | null;
+    content: Content | null;
+}
+
+export interface Author {
+    name: string | null;
+}
+
+export interface Content {
+    description: string | null;
+    includes: string[] | null;
+    programDetails: ProgramDetailItem[] | null;
+}
+
+export interface Prices {
+    currency: string | null;
+    price: number;
+    discount: number;
+}
+
+export interface ProgramDetailItem {
+    id: number;
+    title: string | null;
+    description: string | null;
+}

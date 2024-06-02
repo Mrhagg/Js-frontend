@@ -1,3 +1,4 @@
+import { ProgramDetailItem } from "@/app/services/getAllCourses";
 import "./courseDetails.css";
 
 type CourseProgramItem = {
@@ -6,7 +7,7 @@ type CourseProgramItem = {
 }
 
 type CourseProgramProps = {
-    programItems: CourseProgramItem[];
+    programItems: ProgramDetailItem[];
 }
 
 export default function CourseDetails({
@@ -23,7 +24,7 @@ export default function CourseDetails({
                                 </div>
                                 <div className="text-holder">
                                     <h4>{item.title}</h4>
-                                    <p>{item.text}</p>
+                                    <p>{item.description}</p>
                                 </div>
                             </div>
                         ))}

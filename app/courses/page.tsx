@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import getCourses from "../services/getAllCourses";
+import getAllCourses, { Course } from "../services/getAllCourses";
 import CourseItem from "../components/courses/CourseItem";
 import { useState, useEffect } from "react";
 import "./Course.css";
@@ -10,10 +10,15 @@ import CourseImage from "../../public/images/woman.svg";
 
 
 export default function Courses() {
-    const [courses, setCourses] = useState<any[]>([]);
+    const [courses, setCourses] = useState<Course[]>();
 
     useEffect(() => {
-        getCourses(setCourses)
+        const fetchCourses = async() => {
+            const allCourses = await getAllCourses();
+            console.log("allCourses", allCourses);
+            setCourses(allCourses);
+        }
+        fetchCourses();
     }, []);
 
     return (
@@ -32,7 +37,9 @@ export default function Courses() {
                         </div>
                     </div>
                     <div className="grid-container">
-                        <CourseItem title="HTML/CSS" author="Matheo Möll" price={150} hours={100} likePercentage="95%" likeCount="3k" />
+                        {courses?.map((course) => {
+                        return (<CourseItem title={course.title!} author={course.authors![0].name!} price={course.prices!.price} hours={parseInt(course.hours!)} likePercentage={course.likesInProcent!} likeCount={course.likes!} id={course.id} />)
+                        })}
                     </div>
                     <div className="bottom-content">
                         <p>Ready to get started?</p>

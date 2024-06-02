@@ -2,6 +2,7 @@ import Link from "next/link";
 import "./courseItem.css";
 
 type CourseItemProps = {
+    id: string;
     image?: string;
     title: string;
     author: string;
@@ -13,6 +14,7 @@ type CourseItemProps = {
 
 
 export default function CourseItem({
+    id,
     image,
     title,
     author,
@@ -21,8 +23,10 @@ export default function CourseItem({
     likePercentage,
     likeCount
 }: CourseItemProps) {
+    const courseUrl = `courses/${id}`;
+    
     return (
-        <Link href="courses/singleCourse">
+        <Link href={courseUrl}>
             <div className="course-item">
                 <div><img src={image} alt="" /></div>
                 <div className="text-holder">

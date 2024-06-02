@@ -1,45 +1,45 @@
 'use server'
 
+import { Course } from "./getAllCourses";
+
 export default async function getCourseById(courseId: string) {
 
     const query = `
-    query{
-        getCourseById(id: "${courseId}") {
-          articles
-          authors {
-            imageUrl
-            name
-            text
+    query getCoursesById($courseId: String!) {
+      getCoursesById(id: $courseId) {
+        id
+        isBestSeller   
+        isDigital   
+        categories   
+        title   
+        ingress   
+        starRating   
+        reviews   
+        likesInProcent   
+        likes   
+        hours   
+        authors { 
+          name 
+        }   
+        prices { 
+          currency 
+          discount 
+          price 
+        }   
+        content { 
+          description 
+          includes 
+          programDetails { 
+            id 
+            title 
+            description 
           }
-          categories
-          description
-          descriptionList
-          downloadeableResources
-          hours
-          id
-          imageUri
-          imageHeaderUri
-          isBestSeller
-          likes
-          isDigital
-          likesInProcent
-          prices {
-            currency
-            discountPrice
-            price
-          }
-          programDetails {
-            text
-            title
-          }
-          reviews
-          starRating
-          text
-          title
-        }
-      }
+        }   
+        imageUri   
+        imageHeaderUri 
+      } 
+    }
       `;
-
     try {
     const res = await fetch('http://localhost:7029/api/graphql', {
         method: 'POST',
@@ -48,20 +48,15 @@ export default async function getCourseById(courseId: string) {
         },
         body: JSON.stringify({
             query: query,
+            variables: {
+              courseId: courseId
+            }
         })
     });
 
-    console.log(query);
-    console.log(courseId);
-    console.log('Response status:', res.status);
-    console.log('Response status text:', res.statusText);
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch course: ${res.statusText}`);
-    }
-
     const result = await res.json();
-    return result.data.getCourseById;
+    console.log("result", result);
+    return result.data.getCoursesById as Course;
 
   } catch (error) {
     console.error('Error fetching course:', error);

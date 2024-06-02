@@ -8,21 +8,21 @@ import CourseHeader from "../components/singleCourse/courseHeader/CourseHeader";
 import CourseIncludes from "../components/singleCourse/courseIncludes/CourseIncludes";
 import getCourseById from "../services/getCourseById";
 import CourseAuthor from "../components/singleCourse/courseAuthors/CourseAuthors";
+import { useParams } from "next/navigation";
 import "./singleCourses.css";
 
-export default function SingleCourse({ params }: {
-    params: { id: string}
-}) {
+export default function SingleCourse({id}: {id: string}) {
+  const params2 = useParams();
   const [course, setCourse] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  console.log(params.id)
-
+  console.log("params", params2)
+    const params = {id: "cbd04797-2be5-4b58-8a95-8f34f78533a6"}
   useEffect(() => {
     const fetchCourse = async () => {
         try {
-            const courseData = await getCourseById(params.id);
+            const courseData = await getCourseById(id);
             setCourse(courseData);
         } catch (error: any) {
             setError(error.message);
@@ -55,7 +55,7 @@ export default function SingleCourse({ params }: {
                     <CourseIncludes hours={course.hours} articles={course.articles} downloadResources={course.downloadeableResources} price={course.prices.price} />
                 </div>
             </div>
-            <CourseAuthor imageUri={course.authors.map((author: any) => author.imageUrl)} name={course.authors.map((author: any) => author.name)} text={course.authors.map((author: any) => author.text)} />
+            <CourseAuthor imageUri={course.authors.map((author: any) => author.imageUri)} name={course.authors.map((author: any) => author.name)} text={course.authors.map((author: any) => author.text)} />
             </div>
         </section>
     </main>
